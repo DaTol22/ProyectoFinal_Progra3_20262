@@ -10,15 +10,24 @@ public class ResourcesCollection {
     }
 
     public BookableResource removeResource(String id){
-        return null;
+        BookableResource resourceToRemove = findById(id);
+        resources.remove(resourceToRemove);
+        return resourceToRemove;
     }
 
     public BookableResource findById(String id) {
+        for(BookableResource resource : resources){
+            if(resource.getId().equals(id)){
+                return resource;
+            }
+        }
         return null;
     }
 
     public List<BookableResource> findByType(ResourceType type){
-        return null;
+        return resources.stream()
+                .filter(resource -> resource.getType().equals(type))
+                .toList();
     }
 
     public List<BookableResource> findAvailable(TimeRange range){

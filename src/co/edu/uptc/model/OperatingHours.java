@@ -1,5 +1,6 @@
 package co.edu.uptc.model;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class OperatingHours {
@@ -8,6 +9,14 @@ public class OperatingHours {
     private boolean openAllDay;
 
     public boolean allows(TimeRange range){
-        return false;
+        if (openAllDay) {
+            return true;
+        }
+        LocalDateTime start = range.getStartTime();
+        LocalDateTime end = range.getEndTime();
+        if (!start.toLocalDate().equals(end.toLocalDate())) {
+            return false;                  
+        }
+        return !start.toLocalTime().isBefore(opens) && !end.toLocalTime().isAfter(closes);
     }
 }

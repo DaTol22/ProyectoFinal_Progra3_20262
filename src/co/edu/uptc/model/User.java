@@ -12,6 +12,10 @@ public class User {
         return name;
     }
 
+    public String getPassword(){
+        return password;
+    }
+
     private SimpleList<Reservation> reservations;
 
     public void addReservation(Reservation r){

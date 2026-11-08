@@ -7,15 +7,23 @@ public class TimeRange {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
     public boolean overlaps(TimeRange other){
-        return false;
+        return startTime.isBefore(other.endTime) && other.startTime.isBefore(endTime);
     }
 
     public boolean contains(LocalDateTime t){
-        return false;
-    }
+    return !t.isBefore(startTime) && t.isBefore(endTime);   
+}
 
     public Duration getDuration(){
-        return null;
+        return Duration.between(startTime, endTime);
     }
 }
