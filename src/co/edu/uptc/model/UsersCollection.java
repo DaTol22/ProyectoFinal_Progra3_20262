@@ -13,8 +13,12 @@ public class UsersCollection {
 
     }
     
-    public User findByName(){
-
+    public User findByName(String name){
+        for(User user : users){
+            if(user.getName().equals(name)){
+                return user;
+            }
+        }return null; //TODO igualmente aqui, hay que mirar si esto es lo que se quiere
     }
     
 }
