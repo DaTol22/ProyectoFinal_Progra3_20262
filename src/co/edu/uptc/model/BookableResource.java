@@ -1,5 +1,7 @@
 package co.edu.uptc.model;
 
+import java.util.List;
+
 public abstract class BookableResource {
     private String name;
     private String id;

@@ -1,5 +1,7 @@
 package co.edu.uptc.model;
 
+import java.util.List;
+
 public class ResourcesCollection {
     private List<BookableResource> resources;
 
