@@ -1,6 +1,6 @@
-import co.edu.uptc.structures.*;
-
 package co.edu.uptc.model;
+
+import co.edu.uptc.structures.*;
 
 public class UsersCollection {
     private SimpleList<User> users;
