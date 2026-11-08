@@ -6,4 +6,7 @@ public class Reservation {
     private String resourceId;
     private TimeRange range;
 
+    public boolean isInRange(){
+        return false;
+    }
 }
