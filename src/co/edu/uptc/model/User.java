@@ -15,8 +15,5 @@ public class User {
 
     public Reservation removeReservation(String id){
 
-    }
-
-
-    
+    }    
 }
