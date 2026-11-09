@@ -7,6 +7,7 @@ public class User {
     private String password;
     private Role role;
     private boolean blocked;
+    private SimpleList<Reservation> reservations;
 
     public String getName() {
         return name;
@@ -16,7 +17,17 @@ public class User {
         return password;
     }
 
-    private SimpleList<Reservation> reservations;
+    public Role getRole(){
+        return role;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
 
     public void addReservation(Reservation r){
         reservations.add(r);
@@ -29,5 +40,7 @@ public class User {
                 return  reservation;
             }
         }return null; //TODO hay que mirar si si tiene que ser la idea de este metodo
-    }    
+    }
+
+    //TODO validar la password
 }
