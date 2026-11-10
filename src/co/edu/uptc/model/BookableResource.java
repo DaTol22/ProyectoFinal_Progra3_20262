@@ -11,16 +11,13 @@ public abstract class BookableResource {
     public String getId() {
         return id;
     }
+
+    public abstract ResourceType getType();
     
     public abstract void validate(User user, TimeRange range);
     
     public boolean isAvailable(TimeRange range){
         return isOpenDuring(range) && !hasConflict(range);
-    }
-
-
-    public ResourceType getType(){
-        return null;
     }
 
    private boolean isOpenDuring(TimeRange range){

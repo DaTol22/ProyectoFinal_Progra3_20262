@@ -8,6 +8,11 @@ public class ParkingSpot extends BookableResource{
 
     }
 
+    @Override 
+    public ResourceType getType(){
+        return ResourceType.PARKING;
+    }
+
     private double calculateCost(TimeRange range){
         return 0;
     }

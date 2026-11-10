@@ -3,6 +3,7 @@ package co.edu.uptc.model;
 import co.edu.uptc.structures.SimpleList;
 
 public class User {
+    private SimpleList<Reservation> reservations;
     private String name;
     private String password;
     private Role role;
@@ -12,11 +13,17 @@ public class User {
         return name;
     }
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
     public String getPassword(){
         return password;
     }
-
-    private SimpleList<Reservation> reservations;
 
     public void addReservation(Reservation r){
         reservations.add(r);
