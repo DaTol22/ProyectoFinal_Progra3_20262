@@ -5,29 +5,40 @@ import co.edu.uptc.structures.*;
 public class UsersCollection {
     private SimpleList<User> users;
 
-    public boolean register(User user){
-        try{
-            findByName(user.getName());
-            return false;
-        }catch(IllegalArgumentException e){
-            return users.add(user);
+    public synchronized boolean register(User user){
+        validateCredentials(user.getName(), user.getPassword());
+        if(findByName(user.getName().trim()) != null){
+            throw new IllegalArgumentException("El usuario ya existe.");
         }
+        return users.add(user);
     }
 
-
-    public User login(String name, String password) throws IllegalArgumentException{
+    public synchronized User login(String name, String password) throws IllegalArgumentException {
         User user = findByName(name);
-        if(!password.equals(user.getPassword())) throw new IllegalArgumentException("Contraseña incorrecta.");
+        if (user == null || !password.equals(user.getPassword())) {
+            throw new IllegalArgumentException("Usuario o contraseña incorrectos.");
+        }
+        if (user.isBlocked()) {
+            throw new IllegalArgumentException("El usuario está bloqueado.");
+        }
         return user;
     }
-    
-    public User findByName(String name) throws IllegalArgumentException{
-        for(User user : users){
-            if(user.getName().equals(name)){
+
+    public synchronized User findByName(String name) {
+        for (User user : users) {
+            if (user.getName().equals(name)) {
                 return user;
             }
         }
-        throw new IllegalArgumentException("Usuario no encontrado.");//TODO igualmente aqui, hay que mirar si esto es lo que se quiere
+        return null;
     }
-    
+
+    private void validateCredentials(String name, String password) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+        if (password == null || password.length() < 4) {
+            throw new IllegalArgumentException("La contraseña debe tener al menos 4 caracteres.");
+        }
+    }
 }
