@@ -1,5 +1,6 @@
 package co.edu.uptc.model;
 
+import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.structures.SimpleList;
 
 public abstract class BookableResource {
@@ -7,6 +8,12 @@ public abstract class BookableResource {
     private String id;
     private SimpleList<Reservation> reservations;
     private OperatingHours hours;
+
+    public BookableResource(String name, String id, OperatingHours hours){
+        this.name = name;
+        this.id = id;
+        this.hours = hours;
+    }
     
     public String getId() {
         return id;
@@ -31,5 +38,9 @@ public abstract class BookableResource {
             }
         }
         return false;
+    }
+
+    public SimpleList<Reservation> getReservations() {
+        return reservations;
     }
 }

@@ -1,5 +1,6 @@
 package co.edu.uptc.model;
 
+import co.edu.uptc.enums.Role;
 import co.edu.uptc.structures.SimpleList;
 
 public class User {
@@ -39,8 +40,6 @@ public class User {
                 reservations.remove(reservation);
                 return  reservation;
             }
-        }return null; //TODO hay que mirar si si tiene que ser la idea de este metodo
+        }return null;
     }
-
-    //TODO validar la password
 }

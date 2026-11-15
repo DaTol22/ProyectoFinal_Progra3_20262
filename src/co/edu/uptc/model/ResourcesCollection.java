@@ -1,5 +1,6 @@
 package co.edu.uptc.model;
 
+import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.structures.SimpleList;
 
 public class ResourcesCollection {
