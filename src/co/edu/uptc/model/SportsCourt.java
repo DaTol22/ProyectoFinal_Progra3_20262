@@ -5,7 +5,11 @@ public class SportsCourt extends BookableResource{
 
     @Override 
     public void validate(User user, TimeRange range){
-
+        user.
     }
     
+    @Override 
+    public ResourceType getType(){
+        return ResourceType.COURT;
+    }
 }
