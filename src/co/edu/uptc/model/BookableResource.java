@@ -39,4 +39,8 @@ public abstract class BookableResource {
         }
         return false;
     }
+
+    public SimpleList<Reservation> getReservations() {
+        return reservations;
+    }
 }
