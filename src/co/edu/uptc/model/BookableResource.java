@@ -1,11 +1,11 @@
 package co.edu.uptc.model;
 
-import java.util.List;
+import co.edu.uptc.structures.SimpleList;
 
 public abstract class BookableResource {
     private String name;
     private String id;
-    private List<Reservation> reservations;
+    private SimpleList<Reservation> reservations;
     private OperatingHours hours;
     
     public String getId() {

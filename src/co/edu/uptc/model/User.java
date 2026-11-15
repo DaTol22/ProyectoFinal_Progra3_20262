@@ -8,7 +8,6 @@ public class User {
     private String password;
     private Role role;
     private boolean blocked;
-    private SimpleList<Reservation> reservations;
 
     public String getName() {
         return name;

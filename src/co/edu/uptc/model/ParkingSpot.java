@@ -1,10 +1,12 @@
 package co.edu.uptc.model;
 
 public class ParkingSpot extends BookableResource{
-    private double ratePerHour;
+    private static final int MINUTES_PER_HOUR = 60;
+    private int ratePerHour;
 
     @Override
     public void validate(User user, TimeRange range) {
+        
 
     }
 
@@ -13,7 +15,8 @@ public class ParkingSpot extends BookableResource{
         return ResourceType.PARKING;
     }
 
-    private double calculateCost(TimeRange range){
-        return 0;
+    public int calculateCost(TimeRange range){
+        int totalMinutes = (int) range.getDuration().toMinutes();
+        return ((totalMinutes + (MINUTES_PER_HOUR - 1)) / MINUTES_PER_HOUR) * ratePerHour;
     }
 }

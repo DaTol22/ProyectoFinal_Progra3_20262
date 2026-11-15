@@ -7,7 +7,7 @@ public class BookingManager {
     public Reservation makeReservation(String userName, String resourceId, TimeRange range){
         //no valida nada dxxxxxx
         resources.findById(resourceId).validate(users.findByName(userName), range).;
-        Reservation reservation = new Reservation("l4", userName, resourceId, range); //TODO no se como se pone el id de la reserva dxpuse ese l4 provisional
+        Reservation reservation = new Reservation("l4", userName, resourceId, range); //TODO no se como se pone el id de la reserva dx puse ese l4 provisional
         users.findByName(userName).addReservation(reservation); 
         return reservation;
     }
