@@ -43,6 +43,10 @@ public class ResourcesCollection {
     }
 
     public SimpleList<BookableResource> findAvailable(TimeRange range){
-        return null;
+        SimpleList<BookableResource> out = new SimpleList<>();
+        for(BookableResource resource: resources){
+            if(resource.isAvailable(range)) out.add(resource);
+        }
+        return out;
     }
 }
