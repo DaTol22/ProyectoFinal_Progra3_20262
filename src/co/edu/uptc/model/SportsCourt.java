@@ -10,8 +10,8 @@ public class SportsCourt extends BookableResource{
     private static final long MAX_DAILY_HOURS = 2;
     private int maxNumberOfPlayers;
 
-    public SportsCourt(String name, String id, OperatingHours hours) {
-        super(name, id, hours);
+    public SportsCourt(String name, OperatingHours hours) {
+        super(name, "02", hours);
     }
 
 
