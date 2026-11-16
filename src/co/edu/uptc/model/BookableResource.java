@@ -19,6 +19,10 @@ public abstract class BookableResource {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public abstract ResourceType getType();
     
     public abstract void validate(User user, TimeRange range);

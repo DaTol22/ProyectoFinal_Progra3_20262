@@ -14,7 +14,6 @@ public class SportsCourt extends BookableResource{
         super(name, id, hours);
     }
 
-
     @Override
     public void validate(User user, TimeRange range) {
         LocalDate day = range.getStartTime().toLocalDate();

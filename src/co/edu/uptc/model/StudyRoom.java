@@ -6,8 +6,8 @@ import co.edu.uptc.exceptions.ReservationException;
 import java.time.Duration;
 
 public class StudyRoom extends BookableResource{
-    private Duration slotDuration;
     private static final int MAX_SLOTS = 2;
+    private Duration slotDuration;
 
     public StudyRoom(String name, String id, OperatingHours hours) {
         super(name, id, hours);

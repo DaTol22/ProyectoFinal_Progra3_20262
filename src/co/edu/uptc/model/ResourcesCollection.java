@@ -5,9 +5,20 @@ import co.edu.uptc.structures.SimpleList;
 
 public class ResourcesCollection {
     private SimpleList<BookableResource> resources;
+    private int parkingCounter = 0;
+    private int roomCounter = 0;
+    private int courtCounter = 0;
 
     public boolean addResource(BookableResource resource){
-        return false;
+        switch(resource.getType()){
+            case PARKING -> {parkingCounter++;
+                    resource.setId(resource.getId() + parkingCounter);}
+            case STUDY_ROOM -> {roomCounter++;
+                    resource.setId(resource.getId() + roomCounter);}
+            case COURT -> {courtCounter++;
+                    resource.setId(resource.getId() + courtCounter);}
+        }
+        return resources.add(resource);
     }
 
     public BookableResource removeResource(String id){
