@@ -43,4 +43,17 @@ public abstract class BookableResource {
     public SimpleList<Reservation> getReservations() {
         return reservations;
     }
+
+    public void addReservation(Reservation r){
+        reservations.add(r);
+    }
+
+    public Reservation removeReservation(String id){
+        for(Reservation reservation : reservations){
+            if(reservation.getId().equals(id)){
+                reservations.remove(reservation);
+                return  reservation;
+            }
+        }return null;
+    }
 }
