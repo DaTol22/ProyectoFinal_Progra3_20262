@@ -12,6 +12,7 @@ public abstract class BookableResource {
     public BookableResource(String name, String id, OperatingHours hours){
         this.name = name;
         this.id = id;
+        reservations = new SimpleList<>();
         this.hours = hours;
     }
     

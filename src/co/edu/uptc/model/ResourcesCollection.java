@@ -9,6 +9,10 @@ public class ResourcesCollection {
     private int roomCounter = 0;
     private int courtCounter = 0;
 
+    public ResourcesCollection(SimpleList<BookableResource> resources){
+        this.resources = resources;
+    }
+
     public boolean addResource(BookableResource resource){
         switch(resource.getType()){
             case PARKING -> {parkingCounter++;

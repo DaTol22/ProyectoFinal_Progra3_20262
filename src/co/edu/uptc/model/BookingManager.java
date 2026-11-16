@@ -1,11 +1,17 @@
 package co.edu.uptc.model;
 
 import co.edu.uptc.exceptions.ReservationException;
+import co.edu.uptc.persistence.FileManager;
 
 public class BookingManager {
     private ResourcesCollection resources;
     private UsersCollection users;
     private int nextReservationNumber = 1;
+
+    public BookingManager(){
+        resources = new ResourcesCollection(FileManager.load());
+
+    }
     
     public synchronized Reservation makeReservation(String userName, String resourceId, TimeRange range) {
         User user = users.findByName(userName);

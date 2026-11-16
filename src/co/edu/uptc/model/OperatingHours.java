@@ -8,6 +8,14 @@ public class OperatingHours {
     private LocalTime closes;
     private boolean openAllDay;
 
+    public OperatingHours(LocalTime opens, LocalTime closes){
+        this.opens = opens;
+        this.closes = closes;
+        if(opens.equals(LocalTime.of(0, 0)) && closes.equals(LocalTime.of(23, 59))){
+            openAllDay = true;
+        }
+    }
+
     public boolean allows(TimeRange range){
         if (openAllDay) {
             return true;
