@@ -31,7 +31,7 @@ public abstract class BookableResource {
         return isOpenDuring(range) && !hasConflict(range);
     }
 
-   private boolean isOpenDuring(TimeRange range){
+    private boolean isOpenDuring(TimeRange range){
         return hours.allows(range);
     }
 

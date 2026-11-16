@@ -8,8 +8,9 @@ public class ParkingSpot extends BookableResource{
     private static final long MAX_HOURS = 24;
     private int ratePerHour;
 
-    public ParkingSpot(String name, String id, OperatingHours hours) {
-        super(name, id, hours);
+    public ParkingSpot(String name, OperatingHours hours) {
+        super(name, "01", hours);
+        //TODO decidir si guardar los id por defecto en persistencia
     }
 
     @Override
