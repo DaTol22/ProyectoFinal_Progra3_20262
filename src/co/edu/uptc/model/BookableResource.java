@@ -33,7 +33,7 @@ public abstract class BookableResource {
 
     private boolean hasConflict(TimeRange range){
         for (Reservation reservation : reservations) {
-            if (reservation.isActive() && reservation.getRange().overlaps(range)) {
+            if (reservation.getRange().overlaps(range)) {
                 return true;
             }
         }
