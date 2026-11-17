@@ -7,13 +7,14 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 public class SportsCourt extends BookableResource{
-    private static final long MAX_DAILY_HOURS = 2;
-    private int maxNumberOfPlayers;
+    private static final long MAX_DAILY_HOURS = 2; //TODO config
 
+    public SportsCourt(String name, OperatingHours hours) {
+        super(name, "02", hours);
+    }
     public SportsCourt(String name, String id, OperatingHours hours) {
         super(name, id, hours);
     }
-
 
     @Override
     public void validate(User user, TimeRange range) {

@@ -12,11 +12,16 @@ public abstract class BookableResource {
     public BookableResource(String name, String id, OperatingHours hours){
         this.name = name;
         this.id = id;
+        reservations = new SimpleList<>();
         this.hours = hours;
     }
     
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public abstract ResourceType getType();
@@ -27,7 +32,7 @@ public abstract class BookableResource {
         return isOpenDuring(range) && !hasConflict(range);
     }
 
-   private boolean isOpenDuring(TimeRange range){
+    private boolean isOpenDuring(TimeRange range){
         return hours.allows(range);
     }
 
@@ -42,5 +47,18 @@ public abstract class BookableResource {
 
     public SimpleList<Reservation> getReservations() {
         return reservations;
+    }
+
+    public void addReservation(Reservation r){
+        reservations.add(r);
+    }
+
+    public Reservation removeReservation(String id){
+        for(Reservation reservation : reservations){
+            if(reservation.getId().equals(id)){
+                reservations.remove(reservation);
+                return  reservation;
+            }
+        }return null;
     }
 }
