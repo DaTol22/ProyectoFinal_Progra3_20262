@@ -15,6 +15,9 @@ public class BookingManager {
     
     public synchronized Reservation makeReservation(String userName, String resourceId, TimeRange range) {
         User user = users.findByName(userName);
+        if(user == null){
+            throw new ReservationException("usuario no encontrado");
+        }
         if (user.isBlocked()) {
             throw new ReservationException("Tu cuenta está bloqueada; no puedes hacer reservas.");
         }

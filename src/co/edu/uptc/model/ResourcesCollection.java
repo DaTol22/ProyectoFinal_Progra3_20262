@@ -41,9 +41,13 @@ public class ResourcesCollection {
     }
 
     public SimpleList<BookableResource> findByType(ResourceType type){
-        return (SimpleList<BookableResource>) resources.stream()
-                .filter(resource -> resource.getType().equals(type))
-                .toList();
+        SimpleList<BookableResource> resourcesByType = new SimpleList<>();
+        for(BookableResource resource : resources){
+            if(resource.getType().equals(type)){
+                resourcesByType.add(resource);
+            }
+        }
+        return resourcesByType;
     }
 
     public SimpleList<BookableResource> findAvailable(TimeRange range){

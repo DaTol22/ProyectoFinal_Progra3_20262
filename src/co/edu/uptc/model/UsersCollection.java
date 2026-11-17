@@ -7,7 +7,7 @@ public class UsersCollection {
 
     public synchronized boolean register(User user){
         validateCredentials(user.getName(), user.getPassword());
-        if(findByName(user.getName().trim()) != null){
+        if(findByName(user.getName()) != null){
             throw new IllegalArgumentException("El usuario ya existe.");
         }
         return users.add(user);
