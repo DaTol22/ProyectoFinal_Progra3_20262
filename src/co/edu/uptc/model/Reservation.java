@@ -17,11 +17,6 @@ public class Reservation {
         return id;
     }
 
-    public boolean isInRange(){
-        return false;
-    }
-
-
     public String getUserName() {
         return userName;
     }

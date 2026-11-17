@@ -42,4 +42,8 @@ public class User {
             }
         }return null;
     }
+
+    public SimpleList<Reservation> getReservations() {
+        return reservations;
+    }
 }

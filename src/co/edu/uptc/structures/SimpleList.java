@@ -291,7 +291,24 @@ public class SimpleList<E> implements Collection<E>, List<E> {
 
 	@Override
 	public E set(int index, E element) {
-		// TODO Auto-generated method stub
+		if (index < 0 || head == null) {
+			return null;
+		}
+
+		Node currentNode = head;
+		int currentIndex = 0;
+
+		while (currentNode != null) {
+			if (currentIndex == index) {
+				E out = (E) currentNode.getValue();
+				currentNode.setValue(element);
+				return out;
+			}
+			else {
+				currentIndex ++;
+				currentNode = currentNode.getNext();
+			}
+		}
 		return null;
 	}
 
