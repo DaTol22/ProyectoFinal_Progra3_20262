@@ -12,6 +12,10 @@ public class StudyRoom extends BookableResource{
     public StudyRoom(String name, OperatingHours hours) {
         super(name, "03", hours);
     }
+    public StudyRoom(String name, String id, OperatingHours hours, Duration slotDuration) {
+        super(name, id, hours);
+        this.slotDuration = slotDuration;
+    }
 
     @Override 
     public void validate(User user, TimeRange range){
