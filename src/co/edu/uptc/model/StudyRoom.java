@@ -9,8 +9,9 @@ public class StudyRoom extends BookableResource{
     private static final int MAX_SLOTS = 2;
     private Duration slotDuration;
 
-    public StudyRoom(String name, OperatingHours hours) {
+    public StudyRoom(String name, OperatingHours hours, Duration slotDuration) {
         super(name, "03", hours);
+        this.slotDuration = slotDuration;
     }
     public StudyRoom(String name, String id, OperatingHours hours, Duration slotDuration) {
         super(name, id, hours);
