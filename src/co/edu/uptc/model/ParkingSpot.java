@@ -8,8 +8,9 @@ public class ParkingSpot extends BookableResource{
     private static final long MAX_HOURS = 24;
     private int ratePerHour;
 
-    public ParkingSpot(String name, OperatingHours hours) {
+    public ParkingSpot(String name, OperatingHours hours, int rate) {
         super(name, "01", hours);
+        this.ratePerHour = rate;
         //TODO decidir si guardar los id por defecto en properties
     }
 

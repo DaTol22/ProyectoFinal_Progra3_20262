@@ -28,7 +28,7 @@ public class FileManager {
     }
 
     private static BookableResource format(String line){
-        String[] lineArray = line.replace("\"", "").split(",");
+        String[] lineArray = line.replace("\"", "").split(",", -1);
         String name = lineArray[0];
         String id = lineArray[1];
         LocalTime opens = LocalTime.parse(lineArray[2]);
