@@ -31,6 +31,10 @@ public class ResourcesCollection {
         return resourceToRemove;
     }
 
+    public void editResource(BookableResource resource){
+        resources.set(resources.indexOf(findById(resource.getId())), resource);
+    }
+
     public BookableResource findById(String id) {
         for(BookableResource resource : resources){
             if(resource.getId().equals(id)){

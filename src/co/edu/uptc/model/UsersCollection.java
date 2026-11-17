@@ -41,4 +41,14 @@ public class UsersCollection {
             throw new IllegalArgumentException("La contraseña debe tener al menos 4 caracteres.");
         }
     }
+
+    public void blockUser(String name){
+        findByName(name).setBlocked(true);
+    }
+
+    public void unblockUser(String name){
+        findByName(name).setBlocked(false);
+    }
+
+
 }
