@@ -32,7 +32,12 @@ public class ResourcesCollection {
     }
 
     public void editResource(BookableResource resource){
-        resources.set(resources.indexOf(findById(resource.getId())), resource);
+        BookableResource resourceToEdit = findById(resource.getId());
+        if(resourceToEdit == null){
+            throw new IllegalArgumentException("el recurso a editar no existe");
+        }
+        resource.setReservations(resourceToEdit.getReservations());
+        resources.set(resources.indexOf(resourceToEdit), resource);
     }
 
     public BookableResource findById(String id) {

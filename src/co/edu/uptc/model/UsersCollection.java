@@ -43,11 +43,21 @@ public class UsersCollection {
     }
 
     public void blockUser(String name){
-        findByName(name).setBlocked(true);
+        User user = findByName(name);
+        if(user == null){
+            throw new IllegalArgumentException("usuario no encontrado");
+        }else{
+            user.setBlocked(true);
+        }
     }
 
     public void unblockUser(String name){
-        findByName(name).setBlocked(false);
+        User user = findByName(name);
+        if(user == null){
+            throw new IllegalArgumentException("usuario no encontrado");
+        }else{
+            user.setBlocked(false);
+        }
     }
 
 
