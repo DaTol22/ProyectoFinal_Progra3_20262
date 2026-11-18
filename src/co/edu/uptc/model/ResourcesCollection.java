@@ -1,5 +1,7 @@
 package co.edu.uptc.model;
 
+import java.time.LocalDateTime;
+
 import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.structures.SimpleList;
 
@@ -14,19 +16,30 @@ public class ResourcesCollection {
     }
 
     public boolean addResource(BookableResource resource){
-        switch(resource.getType()){
-            case PARKING -> {parkingCounter++;
-                    resource.setId(resource.getId() + parkingCounter);}
-            case STUDY_ROOM -> {roomCounter++;
-                    resource.setId(resource.getId() + roomCounter);}
-            case COURT -> {courtCounter++;
-                    resource.setId(resource.getId() + courtCounter);}
-        }
+        String prefix = resource.getId();
+        String candidate = null;
+        do {
+            switch(resource.getType()){
+                case PARKING -> candidate = prefix + (++parkingCounter);
+                case STUDY_ROOM -> candidate = prefix + (++roomCounter);
+                case COURT -> candidate = prefix + (++courtCounter);
+            }
+        } while (findById(candidate) != null);
+        resource.setId(candidate);
         return resources.add(resource);
     }
 
     public BookableResource removeResource(String id){
         BookableResource resourceToRemove = findById(id);
+        if(resourceToRemove == null){
+            throw new IllegalArgumentException("el recurso a eliminar no existe");
+        }
+        for(Reservation reservation : resourceToRemove.getReservations()){
+            if(reservation.getRange().getEndTime().isAfter(LocalDateTime.now())){
+                throw new IllegalStateException("no se puede eliminar el recurso porque tiene reservas activas");
+            }
+
+        }
         resources.remove(resourceToRemove);
         return resourceToRemove;
     }
@@ -62,8 +75,18 @@ public class ResourcesCollection {
     public SimpleList<BookableResource> findAvailable(TimeRange range){
         SimpleList<BookableResource> out = new SimpleList<>();
         for(BookableResource resource: resources){
-            if(resource.isAvailable(range)) out.add(resource);
+            if(resource.isAvailable(range)){
+                out.add(resource);
+            }
         }
         return out;
+    }
+
+    public SimpleList<BookableResource> findAll() {
+        SimpleList<BookableResource> copy = new SimpleList<>();
+        for (BookableResource resource : resources) {
+            copy.add(resource);
+        }
+        return copy;
     }
 }

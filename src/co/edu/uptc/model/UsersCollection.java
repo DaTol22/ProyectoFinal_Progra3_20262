@@ -15,7 +15,7 @@ public class UsersCollection {
 
     public synchronized User login(String name, String password) throws IllegalArgumentException {
         User user = findByName(name);
-        if (user == null || !password.equals(user.getPassword())) {
+        if (user == null || password == null || !password.equals(user.getPassword())) {
             throw new IllegalArgumentException("Usuario o contraseña incorrectos.");
         }
         if (user.isBlocked()) {
@@ -34,7 +34,7 @@ public class UsersCollection {
     }
 
     private void validateCredentials(String name, String password) {
-        if (name == null || name.trim().isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
         if (password == null || password.length() < 4) {
@@ -59,6 +59,4 @@ public class UsersCollection {
             user.setBlocked(false);
         }
     }
-
-
 }
