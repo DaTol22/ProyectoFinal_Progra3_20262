@@ -42,5 +42,8 @@ public class StudyRoom extends BookableResource{
     public ResourceType getType(){
         return ResourceType.STUDY_ROOM;
     }
-    
+
+    public Duration getSlotDuration() {
+        return slotDuration;
+    }
 }

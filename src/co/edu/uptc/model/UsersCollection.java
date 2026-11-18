@@ -63,4 +63,16 @@ public class UsersCollection {
             user.setBlocked(false);
         }
     }
+
+    public SimpleList<String> getUsersInfo() {
+        SimpleList<String> usersInfo = new SimpleList<>();
+        for(User user: users){
+            usersInfo.add(user.getName() + ";" + user.getReservations() + ";" + user.isBlocked());
+        }
+        return usersInfo;
+    }
+
+    public SimpleList<User> getUsers() {
+        return users;
+    }
 }

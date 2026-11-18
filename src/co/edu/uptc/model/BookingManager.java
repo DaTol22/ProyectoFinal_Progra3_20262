@@ -3,6 +3,7 @@ package co.edu.uptc.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.enums.Role;
 import co.edu.uptc.exceptions.ReservationException;
 import co.edu.uptc.persistence.FileManager;
@@ -16,6 +17,25 @@ public class BookingManager {
     public BookingManager(){
         resources = new ResourcesCollection(FileManager.load());
         users = new UsersCollection();
+        for (User user : FileManager.loadUsers()) {
+            users.register(user);
+        }
+        for (Reservation reservation : FileManager.loadReservations()) {
+            BookableResource resource = resources.findById(reservation.getResourceId());
+            User user = users.findByName(reservation.getUserName());
+            if (resource != null && user != null) {
+                resource.addReservation(reservation);
+                user.addReservation(reservation);
+                int number = Integer.parseInt(reservation.getId().substring(reservation.getId().lastIndexOf('#') + 1));
+                nextReservationNumber = Math.max(nextReservationNumber, number + 1);
+            }
+        }
+    }
+
+    private void save() {
+        FileManager.writeResources(resources.findAll());
+        FileManager.writeUsers(users.getUsers());
+        FileManager.writeReservations(resources.findAll());
     }
     
     public synchronized Reservation makeReservation(String userName, String resourceId, TimeRange range) {
@@ -37,9 +57,11 @@ public class BookingManager {
         if (!resource.isAvailable(range)) {
             throw new ReservationException("El recurso no está disponible en esa franja (fuera de horario o ya reservado).");
         }
-        Reservation reservation = new Reservation(resourceId + "#" + nextReservationNumber++, userName, resourceId, range);
+        int cost = resource.calculateCost(range);
+        Reservation reservation = new Reservation(resourceId + "#" + nextReservationNumber++, userName, resourceId, range, cost);
         resource.addReservation(reservation);
         user.addReservation(reservation);
+        save();
         return reservation;
     }
 
@@ -72,6 +94,7 @@ public class BookingManager {
         if (owner != null) {
             owner.removeReservation(reservationId);
         }
+        save();
         return true;
     }
 
@@ -140,5 +163,65 @@ public class BookingManager {
         }
         return occupied;
     }
+
+    public synchronized void register(User user){
+        users.register(user);
+        save();
+    }
+
+    public synchronized void login(String username, String password){
+        users.login(username, password);
+    }
+
+    public synchronized void block(String name){
+        users.blockUser(name);
+        save();
+    }
+
+    public synchronized void unblock(String name){
+        users.unblockUser(name);
+        save();
+    }
+
+    public synchronized SimpleList<String> getUsers(String userName){
+        User requester = users.findByName(userName);
+        if (requester == null) {
+            throw new ReservationException("usuario no encontrado");
+        }
+        if (requester.getRole() != Role.ADMIN) {
+            throw new ReservationException("No eres administrador.");
+        }
+        return users.getUsersInfo();
+    }
+
+    public synchronized boolean addResource(BookableResource resource){
+        boolean success = resources.addResource(resource);
+        if(success) {
+            save();
+            return true;
+        }
+        return false;
+    }
+
+    public synchronized BookableResource removeResource(String id){
+        BookableResource removed = resources.removeResource(id);
+        save();
+        return removed;
+    }
+
+    public synchronized void editResource(BookableResource resource){
+        resources.editResource(resource);
+        save();
+    }
+
+    public synchronized SimpleList<BookableResource> findByType(ResourceType type){
+        return resources.findByType(type);
+    }
+
+    public synchronized SimpleList<BookableResource> findAvailable(TimeRange range){
+        return resources.findAvailable(range);
+    }
+
+
 }
     
