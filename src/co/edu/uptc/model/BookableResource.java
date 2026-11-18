@@ -65,4 +65,16 @@ public abstract class BookableResource {
             }
         }return null;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public OperatingHours getHours() {
+        return hours;
+    }
+
+    public int calculateCost(TimeRange range) {
+        return 0;
+    }
 }

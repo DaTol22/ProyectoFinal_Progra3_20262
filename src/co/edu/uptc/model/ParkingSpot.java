@@ -36,8 +36,14 @@ public class ParkingSpot extends BookableResource{
         return ResourceType.PARKING;
     }
 
+    @Override
     public int calculateCost(TimeRange range){
         int totalMinutes = (int) range.getDuration().toMinutes();
         return ((totalMinutes + (MINUTES_PER_HOUR - 1)) / MINUTES_PER_HOUR) * ratePerHour;
     }
+
+    public int getRatePerHour() {
+        return ratePerHour;
+    }
+
 }
