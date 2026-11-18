@@ -10,7 +10,7 @@ public class BookingManager {
 
     public BookingManager(){
         resources = new ResourcesCollection(FileManager.load());
-
+        users = new UsersCollection();
     }
     
     public synchronized Reservation makeReservation(String userName, String resourceId, TimeRange range) {

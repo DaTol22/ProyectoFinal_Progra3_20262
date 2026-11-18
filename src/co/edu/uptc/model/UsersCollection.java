@@ -5,6 +5,10 @@ import co.edu.uptc.structures.*;
 public class UsersCollection {
     private SimpleList<User> users;
 
+    public UsersCollection(){
+        users = new SimpleList<>();
+    }
+
     public synchronized boolean register(User user){
         validateCredentials(user.getName(), user.getPassword());
         if(findByName(user.getName().trim()) != null){
