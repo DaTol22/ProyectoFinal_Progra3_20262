@@ -4,15 +4,15 @@ import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.structures.SimpleList;
 
 public abstract class BookableResource {
+    private SimpleList<Reservation> reservations;
     private String name;
     private String id;
-    private SimpleList<Reservation> reservations;
     private OperatingHours hours;
 
     public BookableResource(String name, String id, OperatingHours hours){
+        reservations = new SimpleList<>();
         this.name = name;
         this.id = id;
-        reservations = new SimpleList<>();
         this.hours = hours;
     }
     
@@ -47,6 +47,10 @@ public abstract class BookableResource {
 
     public SimpleList<Reservation> getReservations() {
         return reservations;
+    }
+
+    public void setReservations(SimpleList<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public void addReservation(Reservation r){
