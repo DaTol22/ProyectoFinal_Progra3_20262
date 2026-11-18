@@ -33,9 +33,13 @@ public class FileManager {
         String id = lineArray[1];
         LocalTime opens = LocalTime.parse(lineArray[2]);
         LocalTime closes = LocalTime.parse(lineArray[3]);
-        if(lineArray[4].isEmpty() && lineArray[5].isEmpty()) return new SportsCourt(name, id, new OperatingHours(opens, closes));
-        else if(lineArray[5].isEmpty()) return new ParkingSpot(name, id, new OperatingHours(opens, closes), Integer.parseInt(lineArray[4]));
-        else return new StudyRoom(name, id, new OperatingHours(opens, closes), Duration.ofMinutes(Long.parseLong(lineArray[5])));
+        if(lineArray[4].isEmpty() && lineArray[5].isEmpty()){
+            return new SportsCourt(name, id, new OperatingHours(opens, closes));
+        }else if(lineArray[5].isEmpty()){
+            return new ParkingSpot(name, id, new OperatingHours(opens, closes), Integer.parseInt(lineArray[4]));
+        }else{
+            return new StudyRoom(name, id, new OperatingHours(opens, closes), Duration.ofMinutes(Long.parseLong(lineArray[5])));
+        }
     }
 
     public static void save(){

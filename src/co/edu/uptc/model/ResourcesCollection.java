@@ -32,7 +32,12 @@ public class ResourcesCollection {
     }
 
     public void editResource(BookableResource resource){
-        resources.set(resources.indexOf(findById(resource.getId())), resource);
+        BookableResource resourceToEdit = findById(resource.getId());
+        if(resourceToEdit == null){
+            throw new IllegalArgumentException("el recurso a editar no existe");
+        }
+        resource.setReservations(resourceToEdit.getReservations());
+        resources.set(resources.indexOf(resourceToEdit), resource);
     }
 
     public BookableResource findById(String id) {
@@ -45,9 +50,13 @@ public class ResourcesCollection {
     }
 
     public SimpleList<BookableResource> findByType(ResourceType type){
-        return (SimpleList<BookableResource>) resources.stream()
-                .filter(resource -> resource.getType().equals(type))
-                .toList();
+        SimpleList<BookableResource> resourcesByType = new SimpleList<>();
+        for(BookableResource resource : resources){
+            if(resource.getType().equals(type)){
+                resourcesByType.add(resource);
+            }
+        }
+        return resourcesByType;
     }
 
     public SimpleList<BookableResource> findAvailable(TimeRange range){

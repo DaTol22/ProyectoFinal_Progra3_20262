@@ -11,7 +11,7 @@ public class UsersCollection {
 
     public synchronized boolean register(User user){
         validateCredentials(user.getName(), user.getPassword());
-        if(findByName(user.getName().trim()) != null){
+        if(findByName(user.getName()) != null){
             throw new IllegalArgumentException("El usuario ya existe.");
         }
         return users.add(user);
@@ -47,11 +47,21 @@ public class UsersCollection {
     }
 
     public void blockUser(String name){
-        findByName(name).setBlocked(true);
+        User user = findByName(name);
+        if(user == null){
+            throw new IllegalArgumentException("usuario no encontrado");
+        }else{
+            user.setBlocked(true);
+        }
     }
 
     public void unblockUser(String name){
-        findByName(name).setBlocked(false);
+        User user = findByName(name);
+        if(user == null){
+            throw new IllegalArgumentException("usuario no encontrado");
+        }else{
+            user.setBlocked(false);
+        }
     }
 
 

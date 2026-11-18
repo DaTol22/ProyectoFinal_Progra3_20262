@@ -11,6 +11,15 @@ public class TimeRange {
         return startTime;
     }
 
+    public TimeRange(LocalDateTime startTime, LocalDateTime endTime) {
+        if(startTime.isBefore(endTime)){
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }else{
+            throw new IllegalArgumentException("el tiempo de inicio debe ser antes que el de fin");
+        }
+    }
+
     public LocalDateTime getEndTime() {
         return endTime;
     }
