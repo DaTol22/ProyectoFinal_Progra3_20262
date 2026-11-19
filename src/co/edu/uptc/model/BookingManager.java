@@ -17,7 +17,7 @@ public class BookingManager implements Subject {
     private ResourcesCollection resources;
     private UsersCollection users;
     private int nextReservationNumber = 1;
-    private SimpleList<Observer> observers;
+    private SimpleList<Observer> observers = new SimpleList<>();
 
     public BookingManager(){
         resources = new ResourcesCollection(FileManager.load());
