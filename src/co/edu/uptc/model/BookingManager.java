@@ -1,18 +1,23 @@
 package co.edu.uptc.model;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import co.edu.uptc.enums.BookingEventType;
 import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.enums.Role;
 import co.edu.uptc.exceptions.ReservationException;
+import co.edu.uptc.interfaces.Observer;
+import co.edu.uptc.interfaces.Subject;
 import co.edu.uptc.persistence.FileManager;
 import co.edu.uptc.structures.SimpleList;
 
-public class BookingManager {
+public class BookingManager implements Subject {
     private ResourcesCollection resources;
     private UsersCollection users;
     private int nextReservationNumber = 1;
+    private SimpleList<Observer> observers;
 
     public BookingManager(){
         resources = new ResourcesCollection(FileManager.load());
@@ -62,6 +67,7 @@ public class BookingManager {
         resource.addReservation(reservation);
         user.addReservation(reservation);
         save();
+        notifyObservers(BookingEventType.RESERVATION_CREATED, resourceId);
         return reservation;
     }
 
@@ -95,6 +101,7 @@ public class BookingManager {
             owner.removeReservation(reservationId);
         }
         save();
+        notifyObservers(BookingEventType.RESERVATION_CANCELLED, resource.getId());
         return true;
     }
 
@@ -198,6 +205,7 @@ public class BookingManager {
         boolean success = resources.addResource(resource);
         if(success) {
             save();
+            notifyObservers(BookingEventType.RESOURCE_ADDED, resource.getId());
             return true;
         }
         return false;
@@ -206,12 +214,14 @@ public class BookingManager {
     public synchronized BookableResource removeResource(String id){
         BookableResource removed = resources.removeResource(id);
         save();
+        notifyObservers(BookingEventType.RESOURCE_REMOVED, id);
         return removed;
     }
 
     public synchronized void editResource(BookableResource resource){
         resources.editResource(resource);
         save();
+        notifyObservers(BookingEventType.RESOURCE_EDITED, resource.getId());
     }
 
     public synchronized SimpleList<BookableResource> findByType(ResourceType type){
@@ -223,5 +233,30 @@ public class BookingManager {
     }
 
 
+    @Override
+    public void attach(Observer o) {
+        if (o != null) {
+            observers.add(o);
+        }
+    }
+
+    @Override
+    public void detach(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(BookingEventType type, String resourceId) {
+        BookingEvent event = new BookingEvent(type, resourceId);
+        for (Observer o : observers) {
+            try {
+                o.update(event);
+            } catch (RuntimeException e) {
+                //System.out.println(e);
+            }catch (IOException e){
+                //xd
+            }
+        }
+    }
 }
     

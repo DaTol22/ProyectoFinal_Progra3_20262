@@ -73,7 +73,7 @@ public class UsersCollection {
     public SimpleList<String> getUsersInfo() {
         SimpleList<String> usersInfo = new SimpleList<>();
         for(User user: users){
-            usersInfo.add(user.getName() + ";" + user.getReservations() + ";" + user.isBlocked());
+            usersInfo.add(user.getName() + ";" + user.getReservations().size() + ";" + user.isBlocked());
         }
         return usersInfo;
     }
