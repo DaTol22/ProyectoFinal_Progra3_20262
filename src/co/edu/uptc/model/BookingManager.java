@@ -175,8 +175,8 @@ public class BookingManager implements Subject {
         save();
     }
 
-    public synchronized void login(String username, String password){
-        users.login(username, password);
+    public synchronized Role login(String username, String password){
+        return users.login(username, password).getRole();
     }
 
     public synchronized void block(String name){

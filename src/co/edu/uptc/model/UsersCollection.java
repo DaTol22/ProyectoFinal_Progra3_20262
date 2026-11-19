@@ -53,7 +53,7 @@ public class UsersCollection {
         if(user == null){
             throw new IllegalArgumentException("usuario no encontrado");
         }else if (user.getRole() != Role.ADMIN) {
-            throw new ReservationException("Solo un administrador puede ver todas las reservas.");
+            throw new ReservationException("Solo un administrador puede bloquear un usuario.");
         }else{
             user.setBlocked(true);
         }
@@ -64,7 +64,7 @@ public class UsersCollection {
         if(user == null){
             throw new IllegalArgumentException("usuario no encontrado");
         }else if (user.getRole() != Role.ADMIN) {
-            throw new ReservationException("Solo un administrador puede ver todas las reservas.");
+            throw new ReservationException("Solo un administrador puede desbloquear un usuario.");
         }else{
             user.setBlocked(false);
         }
