@@ -1,2 +1,4 @@
-"NAME","PASSWORD","ROLE,"BLOCKED"
+"NAME","PASSWORD","ROLE","BLOCKED"
 "admin","1234","ADMIN","false"
+"David","1234","USER","false"
+"alejo","1234","USER","false"

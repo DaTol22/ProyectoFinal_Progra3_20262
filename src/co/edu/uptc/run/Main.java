@@ -1,12 +1,16 @@
 package co.edu.uptc.run;
 
-import co.edu.uptc.model.BookableResource;
-import co.edu.uptc.persistence.FileManager;
-import co.edu.uptc.structures.SimpleList;
+import javax.swing.SwingUtilities;
+
+import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.model.BookingManager;
+import co.edu.uptc.view.MainGUI;
 
 public class Main {
     public static void main(String[] args) {
-        SimpleList<BookableResource> resources = FileManager.load();
-        System.out.println(resources);
+        SwingUtilities.invokeLater(() -> {
+            ClientController controller = new ClientController(new BookingManager());
+            new MainGUI(controller).setVisible(true);
+        });
     }
 }
