@@ -122,8 +122,7 @@ public class BookingManager implements Subject {
 
     private Reservation findReservation(BookableResource resource, String reservationId) {
         SimpleList<Reservation> list = resource.getReservations();
-        for (int i = 0; i < list.size(); i++) {
-            Reservation r = list.get(i);
+        for (Reservation r : list) {
             if (r.getId().equals(reservationId)) {
                 return r;
             }
