@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.model.BookableResource;
 import co.edu.uptc.model.Reservation;

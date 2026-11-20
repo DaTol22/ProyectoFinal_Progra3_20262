@@ -2,7 +2,7 @@ package co.edu.uptc.run;
 
 import javax.swing.SwingUtilities;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 import co.edu.uptc.model.BookingManager;
 import co.edu.uptc.view.MainGUI;
 

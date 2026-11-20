@@ -19,7 +19,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 import co.edu.uptc.enums.ResourceType;
 import co.edu.uptc.model.BookableResource;
 import co.edu.uptc.model.ParkingSpot;
