@@ -12,7 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 import co.edu.uptc.model.BookableResource;
 
 class RemoveResourceDialog extends JDialog {

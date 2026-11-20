@@ -2,7 +2,7 @@ package co.edu.uptc.view;
 
 import java.awt.BorderLayout;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 
 class MyReservationsPanel extends SectionPanel {
     private final ClientController controller;

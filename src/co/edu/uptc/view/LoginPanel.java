@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 
 class LoginPanel extends JPanel {
     private final ClientController controller;

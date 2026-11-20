@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 import co.edu.uptc.model.Reservation;
 import co.edu.uptc.structures.SimpleList;
 

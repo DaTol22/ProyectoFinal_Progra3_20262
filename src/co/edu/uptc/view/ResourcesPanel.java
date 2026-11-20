@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import co.edu.uptc.controller.ClientController;
+import co.edu.uptc.clientController.ClientController;
 
 class ResourcesPanel extends SectionPanel {
     private final ClientController controller;
