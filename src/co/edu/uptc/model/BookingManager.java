@@ -233,14 +233,14 @@ public class BookingManager implements Subject {
 
 
     @Override
-    public void attach(Observer o) {
+    public synchronized void attach(Observer o) {
         if (o != null) {
             observers.add(o);
         }
     }
 
     @Override
-    public void detach(Observer o) {
+    public synchronized void detach(Observer o) {
         observers.remove(o);
     }
 
@@ -251,9 +251,9 @@ public class BookingManager implements Subject {
             try {
                 o.update(event);
             } catch (RuntimeException e) {
-                //System.out.println(e);
+                System.out.println(e.getMessage());
             }catch (IOException e){
-                //xd
+                System.err.println("Error de conexión.");
             }
         }
     }

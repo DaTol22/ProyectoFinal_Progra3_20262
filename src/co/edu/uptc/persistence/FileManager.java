@@ -30,7 +30,7 @@ public class FileManager {
             }
         }
         catch (IOException e){
-            //TODO System.err.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return out;
     }
