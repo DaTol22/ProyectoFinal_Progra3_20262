@@ -27,6 +27,7 @@ public class OperatingHours {
         }
         return !start.toLocalTime().isBefore(opens) && !end.toLocalTime().isAfter(closes);
     }
+    //comentario temporal
 
     public LocalTime getCloses() {
         return closes;
@@ -36,3 +37,7 @@ public class OperatingHours {
         return opens;
     }
 }
+
+
+
+
