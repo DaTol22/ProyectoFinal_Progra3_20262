@@ -1,2 +1,16 @@
 "NAME","ID","OPENS","CLOSES","RATE_PER_HOUR","SLOT_DURATION"
-"parqueadero 1","0101010","07:00","18:00","1",
+"Parqueadero 1","011","06:00","20:00","2000",
+"Parqueadero 2","012","06:00","20:00","2000",
+"Parqueadero Visitantes","013","07:00","18:00","3000",
+"Parqueadero Motos","014","06:00","20:00","1000",
+"Parqueadero 24 horas","015","00:00","23:59","4000",
+"Cancha de microfútbol","021","06:00","22:00",,
+"Cancha de baloncesto","022","06:00","22:00",,
+"Cancha de voleibol","023","07:00","20:00",,
+"Cancha de tenis","024","07:00","19:00",,
+"Cancha sintética","025","08:00","21:00",,
+"Sala de estudio 1","031","07:00","21:00",,"60"
+"Sala de estudio 2","032","07:00","21:00",,"60"
+"Sala grupal","033","08:00","20:00",,"120"
+"Sala de lectura silenciosa","034","07:00","21:00",,"30"
+"Sala de proyectos","035","08:00","18:00",,"60"

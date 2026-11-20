@@ -11,13 +11,13 @@ public class ParkingSpot extends BookableResource{
     public ParkingSpot(String name, OperatingHours hours, int rate) {
         super(name, "01", hours);
         this.ratePerHour = rate;
-        //TODO decidir si guardar los id por defecto en properties
+
     }
 
     public ParkingSpot(String name, String id, OperatingHours hours, int rate) {
         super(name, id, hours);
         ratePerHour = rate;
-        //TODO decidir si guardar los id por defecto en properties
+
     }
 
     @Override
